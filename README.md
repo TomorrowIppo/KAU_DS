@@ -10,7 +10,7 @@ Git Flow 기반의 브랜치 전략과 버전 관리, 이슈 및 마일스톤 �
 ## 🏗️ 프로젝트 구조
 
 ```
-KAU_DataStructure/
+KAU_DS/
 ├── include/                # 헤더 파일
 ├── src/                    # 소스 코드
 ├── test/                   # 테스트 코드 (입력 예제 등)

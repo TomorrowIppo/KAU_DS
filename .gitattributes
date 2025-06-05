@@ -1,0 +1,21 @@
+# 기본 텍스트 파일 자동 줄바꿈 설정
+* text=auto eol=lf
+
+# C++ 파일들은 UTF-8 인코딩으로 텍스트 diff
+*.cpp text diff working-tree-encoding=UTF-8
+*.h   text diff working-tree-encoding=UTF-8
+
+# JSON 설정파일은 텍스트로 처리하고 LF 줄바꿈
+*.json text eol=lf working-tree-encoding=UTF-8
+
+# 쉘 스크립트도 LF 줄바꿈 + UTF-8
+*.sh text eol=lf working-tree-encoding=UTF-8
+
+# VSCode 설정 관련 파일은 텍스트로 처리 (인코딩 추가)
+.vscode/* text working-tree-encoding=UTF-8
+
+# 바이너리 파일은 diff/merge 제외
+*.png binary
+*.jpg binary
+*.gif binary
+*.pdf binary
