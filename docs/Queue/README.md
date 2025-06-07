@@ -58,6 +58,7 @@ LinkedListQueue는 연결 리스트 기반으로 구현된 선입선출(FIFO) �
 ```cpp
 #include "LinkedListQueue.hpp"
 using namespace std;
+using namespace ds;
 
 int main() {
     LinkedListQueue<char> queue;
@@ -104,6 +105,7 @@ CircularQueue는 배열 기반으로 구현된 원형 선입선출(FIFO) 큐입�
 ```cpp
 #include "CircularQueue.hpp"
 using namespace std;
+using namespace ds;
 
 int main() {
     CircularQueue<int> queue(5);
@@ -123,4 +125,68 @@ int main() {
 3
 queue size : 3
 queue : front - [ 4 <- 5 <- 6 ] - rear
+```
+
+</br></br>
+
+# 📚 PriorityQueue (힙 기반 우선순위 큐) 사용법 및 구조
+
+## 개요
+PriorityQueue는 배열 기반의 힙 자료구조를 사용하여 구현했습니다.
+최대 힙과 최소 힙을 토글을 통해 지원하며, 템플릿 클래스로 다양한 데이터 타입에 대응할 수 있습니다.
+고정 크기 배열로 구현되어 있어 빠른 삽입과 삭제가 가능하고, 힙 구조를 트리 형태로 콘솔에 출력할 수 있습니다.
+
+## 주요 기능
+- Insert(key, value): 우선순위 키를 기준으로 힙 조건을 유지하며 요소 삽입
+- Delete(): 루트 노드를 삭제하고 힙 재구성 (최우선 요소 제거)
+- Top(): 현재 우선순위가 가장 높은 루트 노드 조회
+- isEmpty(): 큐가 비어있는지 확인
+- isFull(): 큐가 가득 찼는지 확인
+- printInfo(): 힙 구조를 트리 형태로 콘솔에 출력
+
+## 사용법 예제
+```cpp
+#include "PriorityQueue.hpp"
+#include <iostream>
+
+using namespace std;
+using namespace ds;
+
+int main() {
+    PriorityQueue<string> pq(HeapType::MAX);
+
+    pq.Insert(3, "apple");
+    pq.Insert(5, "banana");
+    pq.Insert(1, "cherry");
+    pq.Insert(4, "date");
+    pq.Insert(2, "fig");
+
+    pq.printInfo();
+
+    cout << "Top: " << pq.Top().getKey() << ", " << pq.Top().getValue() << endl;
+
+    cout << "Deleting...\n";
+    while (!pq.isEmpty()) {
+        auto node = pq.Delete();
+        cout << "Deleted Node: (" << node.getKey() << ", " << node.getValue() << ")" << endl;
+    }
+
+    return 0;
+}
+```
+
+## 출력 예시
+```
+5 : (banana)
+    ├── 4 : (date)
+    │   ├── 3 : (apple)
+    │   └── 2 : (fig)
+    └── 1 : (cherry)
+Top: 5, banana
+Deleting...
+Deleted Node: (5, banana)
+Deleted Node: (4, date)
+Deleted Node: (3, apple)
+Deleted Node: (2, fig)
+Deleted Node: (1, cherry)
 ```
