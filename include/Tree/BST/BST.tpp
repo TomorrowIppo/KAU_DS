@@ -126,7 +126,7 @@ template <typename T>
 void BST<T>::printInfo() const {
     std::cout << "---------------------------------------------------------" << std::endl;
     std::cout << "[BST Info]" << std::endl;
-    printInfo_helper(this->root, "", true, Direction::ROOT);
+    printInfo_helper();
 }
 
 template <typename T>
@@ -136,6 +136,8 @@ void BST<T>::printInfo_helper(Node<T>* node, std::string indent, bool is_last, D
 
     if (dir != Direction::LEFT && dir != Direction::RIGHT && dir != Direction::ROOT)
         throw invalid_argument("Invalid direction for printInfo");
+
+    if (!node) node = this->root;
 
     cout << indent << (is_last ? "戌式式 " : "戍式式 ");
     if (dir == Direction::LEFT)  cout << YELLOW << "L" << RESET << ": ";

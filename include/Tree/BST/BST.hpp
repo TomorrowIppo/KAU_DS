@@ -37,7 +37,7 @@ protected:
     virtual Node<T>* remove_node(Node<T>* cur, int key);
     void clear(Node<T>* node);
     void inorder_helper(Node<T>* node) const;
-    void printInfo_helper(Node<T>* node, std::string indent, bool is_last, Direction dir) const;
+    void printInfo_helper(Node<T>* node = nullptr, std::string indent = "", bool is_last = true, Direction dir = Direction::ROOT) const;
 };
 
 } // namespace ds

@@ -261,3 +261,83 @@ int main() {
     │   └── L: (3, Left.Left)
     └── R: (15, Right)
 ```
+
+</br></br>
+
+## 📚 AVLTree
+
+`AVLTree`는 `BST`를 상속받아 자가 균형 이진 탐색 트리를 구현한 클래스입니다. `AVLNode`는 높이(height) 정보를 갖고 있으며, 삽입/삭제 연산 시 균형因자(balance factor)를 기반으로 LL, RR, LR, RL 회전을 수행합니다.
+
+### 🔧 주요 특징
+- `BST`로부터 상속하여 코드 재사용 극대화
+- `AVLNode`는 `Node`를 상속받아 `height`를 포함
+- `insert`, `remove` 연산에서 자동으로 균형 유지
+- `printInfo()`를 통해 트리 상태 출력 가능
+
+### 📁 구조
+
+```
+include/
+└── Tree/
+    └── AVL/
+        ├── AVLNode.hpp
+        └── AVLTree.hpp
+test/
+└── Tree/
+    └── test_avl.cpp
+```
+
+### 🧪 테스트 코드 예시
+
+```cpp
+#include "../../include/Tree/AVL/AVLTree.hpp"
+#include <string>
+
+using namespace ds;
+
+int main() {
+    AVLTree<std::string> avl;
+
+    avl.insert(30, "A");
+    avl.insert(20, "B");
+    avl.insert(10, "C"); // LL 회전 발생
+
+    avl.insert(40, "D");
+    avl.insert(50, "E"); // RR 회전 발생
+
+    avl.insert(25, "F"); // LR 회전 발생
+    avl.insert(5, "G");  // RL 회전 발생
+
+    avl.printInfo();
+
+    avl.remove(40); // 삭제 및 균형 유지
+    avl.remove(10);
+
+    avl.printInfo();
+
+    return 0;
+}
+```
+
+### 🖨️ 출력 결과 예시
+
+```
+---------------------------------------------------------
+[AVL Info]
+└── (30, A)
+    ├── L: (20, B)
+    │   ├── L: (10, C)
+    │   │   └── L: (5, G)
+    │   └── R: (25, F)
+    └── R: (40, D)
+        └── R: (50, E)
+---------------------------------------------------------
+[AVL Info]
+└── (20, B)
+    ├── L: (5, G)
+    └── R: (30, A)
+        ├── L: (25, F)
+        └── R: (50, E)
+```
+
+> LL, RR, LR, RL 회전 및 삭제 후 균형 유지를 포함한 종합 테스트 완료 ✅
