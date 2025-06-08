@@ -2,6 +2,7 @@
 #include "../../../include/Graph/AdjMatrix/AdjMatrix.hpp"
 #include "../../../include/Graph/AdjList/AdjList.hpp"
 #include "../../../include/Search/MST/Kruskal.hpp"
+#include "../../../include/Search/MST/Prim.hpp"
 
 using namespace ds;
 
@@ -18,6 +19,7 @@ int main() {
     g.printGraph();
     std::cout << "\n";
     GraphSearch::kruskal(g);
+    GraphSearch::prim(g);
 
     return 0;
 }
